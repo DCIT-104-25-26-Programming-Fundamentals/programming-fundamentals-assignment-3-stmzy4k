@@ -75,3 +75,154 @@
 // =============================================================================
 
 
+const readlineSync = require('readline-sync');
+
+
+// Addition
+function add(a, b)
+{
+    return a + b;
+}
+
+
+// Subtraction
+function subtract(a, b)
+{
+    return a - b;
+}
+
+
+// Multiplication
+function multiply(a, b)
+{
+    return a * b;
+}
+
+
+// Division
+function divide(a, b)
+{
+    return a / b;
+}
+
+
+// Modulus
+function modulus(a, b)
+{
+    return a % b;
+}
+
+
+// Exponentiation
+function exponent(a, b)
+{
+    let result = 1;
+
+    for (let i = 0; i < b; i++)
+    {
+        result *= a;
+    }
+
+    return result;
+}
+
+
+
+function main()
+{
+    while (true)
+    {
+        console.log("\n============================");
+        console.log("     SIMPLE CALCULATOR");
+        console.log("============================");
+        console.log("1. Addition");
+        console.log("2. Subtraction");
+        console.log("3. Multiplication");
+        console.log("4. Division");
+        console.log("5. Modulus");
+        console.log("6. Exponentiation");
+        console.log("7. Quit");
+
+
+        let choice = readlineSync.questionInt(
+            "Select an operation (1-7): "
+        );
+
+
+        if (choice === 7)
+        {
+            console.log("Goodbye!");
+            return;
+        }
+
+
+        if (choice < 1 || choice > 7)
+        {
+            console.log("Error: Invalid choice.");
+            continue;
+        }
+
+
+        let num1 = readlineSync.questionFloat(
+            "Enter first number: "
+        );
+
+
+        let num2 = readlineSync.questionFloat(
+            "Enter second number: "
+        );
+
+
+        let result;
+
+
+        switch(choice)
+        {
+            case 1:
+                result = add(num1, num2);
+                break;
+
+
+            case 2:
+                result = subtract(num1, num2);
+                break;
+
+
+            case 3:
+                result = multiply(num1, num2);
+                break;
+
+
+            case 4:
+
+                if (num2 === 0)
+                {
+                    console.log(
+                        "Error: Cannot divide by zero."
+                    );
+                    continue;
+                }
+
+                result = divide(num1, num2);
+                break;
+
+
+            case 5:
+                result = modulus(num1, num2);
+                break;
+
+
+            case 6:
+                result = exponent(num1, num2);
+                break;
+        }
+
+
+        console.log(
+            "Result: " + result.toFixed(2)
+        );
+    }
+}
+
+
+main();
